@@ -7,6 +7,7 @@ const CursorChat = ({
   setCursorState,
   updateMyPresence,
 }: CursorChatProps) => {
+    
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: event.target.value });
     setCursorState({
