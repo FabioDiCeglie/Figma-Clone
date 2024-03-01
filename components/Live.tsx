@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from 'react';
 import CursorChat from './cursor/CursorChat';
 import { CursorMode, CursorState, Reaction } from '@/types/type';
 import ReactionSelector from './reaction/ReactionSelector';
+import FlyingReaction from './reaction/FlyingReaction';
+import useInterval from '@/hooks/useInterval';
 
 const Live = () => {
   const others = useOthers();
@@ -13,7 +15,27 @@ const Live = () => {
     mode: CursorMode.Hidden,
   });
 
-  const [reaction, setReaction] = useState<Reaction[]>([]);
+  const [reactions, setReactions] = useState<Reaction[]>([]);
+
+  // set the reactions of the cursor
+  const setReaction = useCallback((reaction: string) => {
+    setCursorState({ mode: CursorMode.Reaction, reaction, isPressed: false });
+  }, []);
+
+  useInterval(() => {
+    if (cursorState.mode === CursorMode.Reaction && cursorState.isPressed) {
+      // concat all the reactions created on mouse click
+      setReactions((reactions) =>
+        reactions.concat([
+          {
+            point: { x: cursor.x, y: cursor.y },
+            value: cursorState.reaction,
+            timestamp: Date.now(),
+          },
+        ])
+      );
+    }
+  }, 100);
 
   const handlePointerMove = useCallback((event: React.PointerEvent) => {
     event.preventDefault();
@@ -34,7 +56,7 @@ const Live = () => {
     (event: React.PointerEvent) => {
       setCursorState((state: CursorState) =>
         cursorState.mode === CursorMode.Reaction
-          ? { ...state, isPress: true }
+          ? { ...state, isPressed: true }
           : state
       );
     },
@@ -48,20 +70,12 @@ const Live = () => {
       updateMyPresence({ cursor: { x, y } });
       setCursorState((state: CursorState) =>
         cursorState.mode === CursorMode.Reaction
-          ? { ...state, isPress: true }
+          ? { ...state, isPressed: true }
           : state
       );
     },
     [cursorState.mode, setCursorState]
   );
-
-  const setReactions = useCallback((reaction: string) => {
-    setCursorState({
-      mode: CursorMode.Reaction,
-      reaction,
-      isPressed: false,
-    });
-  }, [])
 
   useEffect(() => {
     const onKeyUp = (event: KeyboardEvent) => {
@@ -107,6 +121,18 @@ const Live = () => {
     >
       <h1 className='text-2xl'>Live Figma Clone</h1>
 
+      {reactions.map((reaction) => {
+        return (
+          <FlyingReaction
+            key={reaction.timestamp.toString()}
+            x={reaction.point.x}
+            y={reaction.point.y}
+            timestamp={reaction.timestamp}
+            value={reaction.value}
+          />
+        );
+      })}
+
       {cursor && (
         <CursorChat
           cursor={cursor}
@@ -117,9 +143,7 @@ const Live = () => {
       )}
 
       {cursorState.mode === CursorMode.ReactionSelector && (
-        <ReactionSelector
-          setReaction={setReactions}
-        />
+        <ReactionSelector setReaction={setReaction} />
       )}
 
       <LiveCursors others={others} />
