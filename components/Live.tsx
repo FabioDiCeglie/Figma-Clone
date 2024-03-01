@@ -24,6 +24,11 @@ const Live = () => {
 
   const broadcast = useBroadcastEvent();
 
+  // clean up old reactions
+  useInterval(() => {
+    setReactions((reactions) => reactions.filter((r) => r.timestamp > Date.now() - 4000))
+  },1000)
+
   // set the reactions of the cursor
   const setReaction = useCallback((reaction: string) => {
     setCursorState({ mode: CursorMode.Reaction, reaction, isPressed: false });
