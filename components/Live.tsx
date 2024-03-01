@@ -1,6 +1,6 @@
 import LiveCursors from '@/components/cursor/LiveCursor';
 import { useMyPresence, useOthers } from '@/liveblocks.config';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CursorChat from './cursor/CursorChat';
 import { CursorMode } from '@/types/type';
 
@@ -29,6 +29,36 @@ const Live = () => {
     const y = event.clientY - event.currentTarget.getBoundingClientRect().y;
     updateMyPresence({ cursor: { x, y } });
   }, []);
+
+  useEffect(() => {
+    const onKeyUp = (event: KeyboardEvent) => {
+      if (event.key === '/') {
+        setCursorState({
+          mode: CursorMode.Chat,
+          previousMessage: null,
+          message: '',
+        });
+      } else if (event.key === 'Escape') {
+        updateMyPresence({ message: '' });
+        setCursorState({
+          mode: CursorMode.Hidden,
+        });
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === '/') {
+        event.preventDefault();
+      }
+    };
+
+    window.addEventListener('keyup', onKeyUp);
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [updateMyPresence]);
 
   return (
     <div
