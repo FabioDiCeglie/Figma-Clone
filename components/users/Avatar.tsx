@@ -1,20 +1,28 @@
+import Image from 'next/image';
 import styles from './Avatar.module.css';
 
 const IMAGE_SIZE = 48;
 
 type Props = {
-  src: string;
   name: string;
+  otherStyles: string;
 };
 
-const Avatar = ({ src, name }: Props) => {
+const Avatar = ({ name, otherStyles }: Props) => {
   return (
-    <div className={styles.avatar} data-tooltip={name}>
-      <img
-        src={src}
+    <div
+      className={`${styles.avatar} ${otherStyles} h-9 w-9`}
+      data-tooltip={name}
+    >
+      <Image
+        src={`https://liveblocks.io/avatars/avatar-${Math.floor(
+          Math.random() * 30
+        )}.png`}
         height={IMAGE_SIZE}
         width={IMAGE_SIZE}
+        fill
         className={styles.avatar_picture}
+        alt={name}
       />
     </div>
   );
