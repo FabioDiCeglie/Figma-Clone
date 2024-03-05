@@ -1,6 +1,6 @@
 'use client';
 
-import fabric from 'fabric';
+import { fabric } from 'fabric';
 import { useEffect, useRef, useState } from 'react';
 import Live from '@/components/Live';
 import RightSideBar from '@/components/RightSideBar';
@@ -46,7 +46,7 @@ export default function Page() {
     });
 
     window.addEventListener('resize', () => {
-      handleResize({ fabricRef });
+      handleResize({ canvas: fabricRef.current })
     });
   }, []);
 
