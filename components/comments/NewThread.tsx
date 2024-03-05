@@ -1,5 +1,5 @@
 const NewThread = ({ children }) => {
-  return children
+  return children;
 }
 
 export default NewThread
