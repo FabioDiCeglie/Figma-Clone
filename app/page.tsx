@@ -2,9 +2,7 @@
 
 import fabric from 'fabric';
 import { useEffect, useRef, useState } from 'react';
-import LeftSideBar from '@/components/LeftSideBar';
 import Live from '@/components/Live';
-import NavBar from '@/components/NavBar';
 import RightSideBar from '@/components/RightSideBar';
 import {
   handleCanvasMouseDown,
@@ -12,6 +10,8 @@ import {
   initializeFabric,
 } from '@/lib/canvas';
 import { ActiveElement } from '@/types/type';
+import LeftSideBar from '@/components/LeftSidebar';
+import NavBar from '@/components/Navbar';
 
 export default function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
