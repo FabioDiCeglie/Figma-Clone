@@ -6,7 +6,8 @@ import Live from '@/components/Live';
 import RightSideBar from '@/components/RightSideBar';
 import {
   handleCanvasMouseDown,
-  handleCanvaseMouseMove,
+  handleCanvasMouseMove,
+  handleCanvasMouseUp,
   handleResize,
   initializeFabric,
 } from '@/lib/canvas';
@@ -21,6 +22,7 @@ export default function Page() {
   const isDrawing = useRef<boolean>(false);
   const shapeRef = useRef<fabric.Object | null>(null);
   const selectedShapeRef = useRef<string | null>(null);
+  const activeObjectRef = useRef<fabric.Object | null>(null)
 
   const canvasObjects = useStorage((root) => root.canvasObjects);
 
@@ -62,13 +64,25 @@ export default function Page() {
     });
 
     canvas.on('mouse:move', (options) => {
-      handleCanvaseMouseMove({
+      handleCanvasMouseMove({
         options,
         canvas,
         isDrawing,
         shapeRef,
         selectedShapeRef,
         syncShapeInStorage
+      });
+    });
+
+    canvas.on('mouse:up', (options) => {
+      handleCanvasMouseUp({
+        canvas,
+        isDrawing,
+        shapeRef,
+        selectedShapeRef,
+        syncShapeInStorage,
+        setActiveElement,
+        activeObjectRef
       });
     });
 
