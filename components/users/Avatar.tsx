@@ -20,7 +20,6 @@ const Avatar = ({ name, otherStyles }: Props) => {
         )}.png`}
         height={IMAGE_SIZE}
         width={IMAGE_SIZE}
-        fill
         className={styles.avatar_picture}
         alt={name}
       />
