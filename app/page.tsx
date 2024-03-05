@@ -8,8 +8,10 @@ import {
   handleCanvasMouseDown,
   handleCanvasMouseMove,
   handleCanvasMouseUp,
+  handleCanvasObjectModified,
   handleResize,
   initializeFabric,
+  renderCanvas,
 } from '@/lib/canvas';
 import { ActiveElement } from '@/types/type';
 import LeftSideBar from '@/components/LeftSidebar';
@@ -86,10 +88,22 @@ export default function Page() {
       });
     });
 
+    canvas.on('object:modified', (options) => {
+      handleCanvasObjectModified({
+        options,
+        syncShapeInStorage,
+      });
+    });
+
     window.addEventListener('resize', () => {
       handleResize({ canvas: fabricRef.current });
     });
   }, []);
+
+  useEffect(() => {
+    renderCanvas({ fabricRef, canvasObjects, activeObjectRef})
+  }, [canvasObjects])
+  
 
   return (
     <main className='h-screen overflow-hidden'>
