@@ -91,7 +91,7 @@ export default function Page() {
         }
       break;
       default:
-        break;
+      break;
     }
 
     selectedShapeRef.current = elem?.value as string;
