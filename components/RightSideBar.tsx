@@ -1,3 +1,5 @@
+import { Color, Dimensions, Text, Export } from '@/components/settings'
+
 const RightSideBar = () => {
   return (
     <section
