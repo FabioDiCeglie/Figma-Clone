@@ -12,6 +12,7 @@ import ReactionSelector from './reaction/ReactionSelector';
 import FlyingReaction from './reaction/FlyingReaction';
 import useInterval from '@/hooks/useInterval';
 import Comments from './comments/Comments';
+import { ContextMenu, ContextMenuContent, ContextMenuTrigger } from '@radix-ui/react-context-menu';
 
 type Props = {
   canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
@@ -151,7 +152,8 @@ const Live = ({ canvasRef }: Props) => {
   }, [updateMyPresence]);
 
   return (
-    <div
+    <ContextMenu>
+    <ContextMenuTrigger
       id='canvas'
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
@@ -189,7 +191,10 @@ const Live = ({ canvasRef }: Props) => {
       <LiveCursors others={others} />
 
       <Comments />
-    </div>
+    </ContextMenuTrigger>
+    <ContextMenuContent className='right-menu-content'>
+    </ContextMenuContent>
+    </ContextMenu>
   );
 };
 
