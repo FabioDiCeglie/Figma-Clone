@@ -49,7 +49,11 @@ const Live = ({ canvasRef, undo, redo }: Props) => {
   }, []);
 
   useInterval(() => {
-    if (cursorState.mode === CursorMode.Reaction && cursorState.isPressed && cursor) {
+    if (
+      cursorState.mode === CursorMode.Reaction &&
+      cursorState.isPressed &&
+      cursor
+    ) {
       // concat all the reactions created on mouse click
       setReactions((reactions) =>
         reactions.concat([
