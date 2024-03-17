@@ -1,5 +1,5 @@
 import CursorSVG from '@/public/assets/CursorSVG';
-import { CursorChatProps, CursorMode } from '@/types/type';
+import { CursorChatProps, CursorMode, CursorState } from '@/types/type';
 
 const CursorChat = ({
   cursor,
@@ -7,7 +7,6 @@ const CursorChat = ({
   setCursorState,
   updateMyPresence,
 }: CursorChatProps) => {
-    
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: event.target.value });
     setCursorState({
@@ -21,7 +20,8 @@ const CursorChat = ({
     if (event.key === 'Enter') {
       setCursorState({
         mode: CursorMode.Chat,
-        previousMessage: cursorState.message,
+        previousMessage: (cursorState as { message: string })
+          .message,
         message: '',
       });
     } else if (event.key === 'Escape') {
@@ -42,8 +42,9 @@ const CursorChat = ({
         <>
           <CursorSVG color='#0000' />
 
-          <div className='absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]'
-               onKeyUp={(event) => event.stopPropagation()}
+          <div
+            className='absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white rounded-[20px]'
+            onKeyUp={(event) => event.stopPropagation()}
           >
             {cursorState.previousMessage && (
               <div>{cursorState.previousMessage}</div>

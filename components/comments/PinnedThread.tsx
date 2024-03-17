@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useMemo, useState } from "react";
-import { ThreadData } from "@liveblocks/client";
-import { Thread } from "@liveblocks/react-comments";
-
-import { ThreadMetadata } from "@/liveblocks.config";
+import Image from 'next/image';
+import { useMemo, useState } from 'react';
+import { ThreadData } from '@liveblocks/client';
+import { Thread } from '@liveblocks/react-comments';
+import { ThreadMetadata } from '@/liveblocks.config';
 
 type Props = {
   thread: ThreadData<ThreadMetadata>;
@@ -39,8 +38,8 @@ export const PinnedThread = ({ thread, onFocus, ...props }: Props) => {
           // check if click is on/in the composer
           if (
             e.target &&
-            e.target.classList.contains("lb-icon") &&
-            e.target.classList.contains("lb-button-icon")
+            e.target.classList.contains('lb-icon') &&
+            e.target.classList.contains('lb-button-icon')
           ) {
             return;
           }
@@ -53,7 +52,9 @@ export const PinnedThread = ({ thread, onFocus, ...props }: Props) => {
           data-draggable={true}
         >
           <Image
-            src={`https://liveblocks.io/avatars/avatar-${Math.floor(Math.random() * 30)}.png`}
+            src={`https://liveblocks.io/avatars/avatar-${Math.floor(
+              Math.random() * 30
+            )}.png`}
             alt='Dummy Name'
             width={28}
             height={28}

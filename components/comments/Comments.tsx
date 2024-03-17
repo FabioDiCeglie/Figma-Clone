@@ -1,5 +1,5 @@
 import { ClientSideSuspense } from '@liveblocks/react';
-import CommentsOverlay from './CommentsOverlay';
+import { CommentsOverlay } from './CommentsOverlay';
 
 const Comments = () => {
   return (
