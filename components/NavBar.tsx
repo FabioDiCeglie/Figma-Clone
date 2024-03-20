@@ -11,7 +11,7 @@ import ShapesMenu from './ShapesMenu';
 import ActiveUsers from './users/ActiveUsers';
 import { NewThread } from './comments/NewThread';
 
-const Navbar = ({
+const NavBar = ({
   activeElement,
   imageInputRef,
   handleImageUpload,
@@ -83,6 +83,6 @@ const Navbar = ({
 };
 
 export default memo(
-  Navbar,
+  NavBar,
   (prevProps, nextProps) => prevProps.activeElement === nextProps.activeElement
 );

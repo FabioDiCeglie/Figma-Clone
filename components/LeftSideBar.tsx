@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 import { getShapeInfo } from '@/lib/utils';
 
-const LeftSidebar = ({ allShapes }: { allShapes: Array<any> }) => {
+const LeftSideBar = ({ allShapes }: { allShapes: Array<any> }) => {
   // memoize the result of this function so that it doesn't change on every render but only when there are new shapes
   const memoizedShapes = useMemo(
     () => (
@@ -43,4 +43,4 @@ const LeftSidebar = ({ allShapes }: { allShapes: Array<any> }) => {
   return memoizedShapes;
 };
 
-export default LeftSidebar;
+export default LeftSideBar;

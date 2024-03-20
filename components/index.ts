@@ -1,5 +1,5 @@
-import NavBar from "./Navbar";
-import LeftSideBar from "./LeftSidebar";
+import NavBar from "./NavBar";
+import LeftSideBar from "./LeftSideBar";
 import RightSideBar from "./RightSideBar";
 import CursorChat from "./cursor/CursorChat";
 import Live from "./Live";
