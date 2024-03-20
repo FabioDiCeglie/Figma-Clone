@@ -2,7 +2,7 @@
 
 import { fabric } from 'fabric';
 import { useEffect, useRef, useState } from 'react';
-import { LeftSideBar, Live, NavBar, RightSideBar } from '@/components';
+import { LeftSideBar, Live, NavBar, RightSideBar } from '@/components/index';
 import {
   handleCanvasMouseDown,
   handleCanvasMouseMove,
