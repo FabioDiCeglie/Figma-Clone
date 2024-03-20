@@ -2,8 +2,8 @@
 
 import { fabric } from 'fabric';
 import { useEffect, useRef, useState } from 'react';
-import Live from '@/components/Live';
-import RightSideBar from '@/components/RightSideBar';
+import Live from '../components/Live';
+import RightSideBar from '../components/RightSideBar';
 import {
   handleCanvasMouseDown,
   handleCanvasMouseMove,
@@ -17,8 +17,8 @@ import {
   renderCanvas,
 } from '@/lib/canvas';
 import { ActiveElement, Attributes } from '@/types/type';
-import LeftSideBar from '@/components/LeftSidebar';
-import NavBar from '@/components/Navbar';
+import LeftSideBar from '../components/LeftSidebar';
+import NavBar from '../components/Navbar';
 import { useMutation, useRedo, useStorage, useUndo } from '@/liveblocks.config';
 import { defaultNavElement } from '@/constants';
 import { handleDelete, handleKeyDown } from '@/lib/key-events';
