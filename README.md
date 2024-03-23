@@ -22,7 +22,7 @@
 6. 🚀 [More](#more)
 
 ## <a name="video-demonstration">💻 Video Demonstration</a>
-<iframe width="560" height="315" src="https://www.veed.io/view/8469bc1b-7686-46c9-8db9-79c8adc16dfc?panel=share" frameborder="0" allowfullscreen></iframe>
+<div style="padding:52.03% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/926571933?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Figma Recording"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 ## <a name="introduction">🤖 Introduction</a>
 
