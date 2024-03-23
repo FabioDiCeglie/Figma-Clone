@@ -21,6 +21,9 @@
 5. 🤸 [Quick Start](#quick-start)
 6. 🚀 [More](#more)
 
+## 👨‍💻 <a name="table">Figma Clone Live</a>
+<a href="https://figma-clone-lemon.vercel.app/" target="_blank"><img alt="Vercel" src="https://img.shields.io/badge/Vercel-click%20here-blue?logo=vercel" /></a>
+
 ## <a name="video-demonstration">💻 Video Demonstration</a>
 
 
