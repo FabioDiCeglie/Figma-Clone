@@ -24,6 +24,10 @@
 ## <a name="video-demonstration">💻 Video Demonstration</a>
 
 
+https://github.com/FabioDiCeglie/Figma-Clone/assets/93951206/7aa88301-dc83-4875-892b-b2751fc1b53d
+
+
+
 ## <a name="introduction">🤖 Introduction</a>
 
 I've developed a simplistic Figma replica to exemplify the integration of practical functionalities such as real-time collaboration with cursor chat, comment sections, reaction options, and the ability to sketch designs (including shapes and image uploads) directly on the canvas utilizing fabric.js.
