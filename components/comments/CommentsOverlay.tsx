@@ -1,15 +1,12 @@
-'use client';
+"use client";
 
-import { useCallback, useRef } from 'react';
-import { ThreadData } from '@liveblocks/client';
-import {
-  ThreadMetadata,
-  useEditThreadMetadata,
-  useThreads,
-  useUser,
-} from '@/liveblocks.config';
-import { useMaxZIndex } from '@/lib/useMaxZIndex';
-import { PinnedThread } from './PinnedThread';
+import { useCallback, useRef } from "react";
+import { ThreadData } from "@liveblocks/client";
+
+import { ThreadMetadata, useEditThreadMetadata, useThreads, useUser } from "@/liveblocks.config";
+import { useMaxZIndex } from "@/lib/useMaxZIndex";
+
+import { PinnedThread } from "./PinnedThread";
 
 type OverlayThreadProps = {
   thread: ThreadData<ThreadMetadata>;
@@ -17,6 +14,12 @@ type OverlayThreadProps = {
 };
 
 export const CommentsOverlay = () => {
+  /**
+   * We're using the useThreads hook to get the list of threads
+   * in the room.
+   *
+   * useThreads: https://liveblocks.io/docs/api-reference/liveblocks-react#useThreads
+   */
   const { threads } = useThreads();
 
   // get the max z-index of a thread
@@ -27,11 +30,7 @@ export const CommentsOverlay = () => {
       {threads
         .filter((thread) => !thread.metadata.resolved)
         .map((thread) => (
-          <OverlayThread
-            key={thread.id}
-            thread={thread}
-            maxZIndex={maxZIndex}
-          />
+          <OverlayThread key={thread.id} thread={thread} maxZIndex={maxZIndex} />
         ))}
     </div>
   );
@@ -51,7 +50,7 @@ const OverlayThread = ({ thread, maxZIndex }: OverlayThreadProps) => {
    *
    * useUser: https://liveblocks.io/docs/api-reference/liveblocks-react#useUser
    */
-  const { isLoading } = useUser(thread.comments[0].userId);
+  const { user, error, isLoading } = useUser(thread.comments[0].userId);
 
   // We're using a ref to get the thread element to position it
   const threadRef = useRef<HTMLDivElement>(null);
@@ -79,7 +78,7 @@ const OverlayThread = ({ thread, maxZIndex }: OverlayThreadProps) => {
     <div
       ref={threadRef}
       id={`thread-${thread.id}`}
-      className='absolute left-0 top-0 flex gap-5'
+      className="absolute left-0 top-0 flex gap-5"
       style={{
         transform: `translate(${thread.metadata.x}px, ${thread.metadata.y}px)`,
       }}
